@@ -2,8 +2,9 @@
 #include <iostream>
 #include <string.h>
 #include <stdlib.h>
-
+#include <fstream>
 using namespace std;
+
 
 typedef struct Moves  //STRUCT CREADO PARA LOGRAR HACER LA MEJOR ELECCION AL MOMENTO DE MOVER UNA PIEZA
 {
@@ -381,11 +382,18 @@ int JuegoTerminado(int b[],int n[]) //VERIFICA SI EL JUEGO TERMINO O NO
 void imprimirTablero(int t[][12]) //IMPRIME EL TABLERO DE JUEGO
 {
 	int i,j,n=1;
+	ifstream archivolec("Registros.txt");
+    ofstream archivoesc;
+    archivoesc.open("Registros.txt",ios::app);
 	cout<<"\t\b\b\b\b 1  2  3  4  5  6  7  8  9  10"<<endl;
+	archivoesc <<"\t 1  2  3  4  5  6  7  8  9  10"<<endl;
 	cout<<""<<endl;
+	archivoesc<<""<<endl;
     for(i=1;i<12;i++)
-    {   if(n!=11)
+    {   if(n!=11){
 		cout<<n<<"\t\b\b\b\b";
+		archivoesc<<n<<"\t";
+	    }
 		
       for(j=0;j<12;j++)
       {
@@ -394,9 +402,11 @@ void imprimirTablero(int t[][12]) //IMPRIME EL TABLERO DE JUEGO
 		  	if(t[i][j]<10 && t[i][j]>0){
 
 		    	cout<<"00"<<t[i][j];
+		    	archivoesc<<"00"<<t[i][j];
 		    }
 		  	else{
 		  	cout<<"0"<<t[i][j];
+		  	archivoesc<<"0"<<t[i][j];
 		    }
 		  }
 		  else
@@ -404,6 +414,7 @@ void imprimirTablero(int t[][12]) //IMPRIME EL TABLERO DE JUEGO
 			  if(15<t[i][j] && t[i][j]<31)
 			  {
 				  cout<<"0"<<t[i][j];
+				  archivoesc<<"0"<<t[i][j];
 			  }
 			  else
 			  {
@@ -414,20 +425,24 @@ void imprimirTablero(int t[][12]) //IMPRIME EL TABLERO DE JUEGO
 						  if(j%2==0)
 						  {
 						    cout<<"###";
+						    archivoesc<<"###";
 						  }
 						  else
 						  {
 							  cout<<"   ";
+							  archivoesc<<"   ";
 						  }
 					  }
 					  else{
 						  if(j%2!=0)
 						  {
 							  cout<<"###";
+							  archivoesc<<"###";
 						  }
 						  else
 						  {
 							  cout<<"   ";
+							  archivoesc<<"   ";
 						  }
 					  }
 				  }
@@ -436,10 +451,13 @@ void imprimirTablero(int t[][12]) //IMPRIME EL TABLERO DE JUEGO
           if(j==11)
          {
            cout<<""<<endl;
+           archivoesc<<""<<endl;
            n++;
          }
       }
    }
+    archivoesc.close();
+    archivolec.close();
 }
 
 void Reglas(int t[][12],int p,int tip,int *h) //VERIFICA SI LA PIEZA QUE QUIERE MOVER EL JUGADOR EFECTIVAMENTE SE PUEDE MOVER
@@ -470,8 +488,6 @@ void Reglas(int t[][12],int p,int tip,int *h) //VERIFICA SI LA PIEZA QUE QUIERE 
 							}
 							else
 							{
-								system("cls");
-							    imprimirTablero(t);
 								cout<<"Este Peon no se puede Mover!"<<endl;
 								*h=0;
 							}
@@ -481,16 +497,12 @@ void Reglas(int t[][12],int p,int tip,int *h) //VERIFICA SI LA PIEZA QUE QUIERE 
 			}
 			if(r==0)
 			{
-				system("cls");
-				imprimirTablero(t);
 				cout<<"Este Peon ya no se encuentra en la Batalla!"<<endl;
 				*h=0;
 		    }
 		}
 		else
 		{
-			system("cls");
-			imprimirTablero(t);
 			cout<<"Este Peon No te Pertenece!"<<endl;
 			cout<<"Escoje otro!(01-15)"<<endl;
 			*h=0;
@@ -557,7 +569,6 @@ void movPlayer(int t[][12],int peon,int *conf)
                     	j=12;
                     	i=12;
                     	h=1;
-                        system("cls");
                     	
                     }
                     else
@@ -570,7 +581,6 @@ void movPlayer(int t[][12],int peon,int *conf)
                         	j=12;
                         	i=12;
                         	h=1;
-                        	system("cls");
                     	}
                     	else
                     	{
@@ -582,12 +592,9 @@ void movPlayer(int t[][12],int peon,int *conf)
                             	j=12;
                             	i=12;
                             	h=1;
-                            	system("cls");
                     		}
                     		else
                     		{
-                    			system("cls");
-							    imprimirTablero(t);
 							    cout<<peon<<endl;
                     			cout<<"Este peon no se puede mover a esta locacion!"<<endl;
                     			cout<<"Deseas Cambiar la Pieza?(S/N)"<<endl;
@@ -600,6 +607,8 @@ void movPlayer(int t[][12],int peon,int *conf)
                     		}
                     		
                     	}
+                       
+
                     }
 		    	}
 		    }
@@ -607,8 +616,6 @@ void movPlayer(int t[][12],int peon,int *conf)
        }
        else
 	   {
-	   	  system("cls");
-		  imprimirTablero(t);
 		  cout<<peon<<endl;
 		  cout<<"Este lugar esta ocupado!"<<endl;
 		  cout<<"Deseas Mover Otra Pieza?(S/N)"<<endl;
@@ -622,8 +629,6 @@ void movPlayer(int t[][12],int peon,int *conf)
     }
      else
     {
-      system("cls");
-	  imprimirTablero(t);
 	  cout<<peon<<endl;
    	  cout<<"Dimensiones fuera del tablero!"<<endl;
    	  cout<<"Deseas Mover Otra Pieza?(S/N)"<<endl;
@@ -640,6 +645,13 @@ void movPlayer(int t[][12],int peon,int *conf)
 
 int main()
 {
+   ifstream archivolec("Registros.txt");
+   ofstream archivoesc;
+   archivoesc.open("Registros.txt",ios::app);
+   archivoesc <<"----------------------INICIO JUEGO----------------------"<<endl;
+   archivoesc <<""<<endl;
+   archivoesc.close();
+   archivolec.close();
    int tablero [12][12];
    int blancas [15];
    int negras [15];
@@ -647,16 +659,17 @@ int main()
    string val;
 
    llenartabla(tablero,blancas,negras);
+   tablero[4][3]=16;
+   tablero[6][3]=20;
    imprimirTablero(tablero);
   while(n!=3)
   {
-  	sensorDama(tablero);
+  	 sensorDama(tablero);
    	 h=0;
    	 conf=0;
 	 while(h==0)
 	 {
-
-	 	rval=0;
+        rval=0;
 	 	while(rval==0){
            cout<<"Que Pieza desea mover?"<<endl;
 		   cin>>val;
@@ -665,12 +678,12 @@ int main()
 		f=atoi(val.c_str());
 	 	Reglas(tablero,f,2,&h);
      }
-     	 	   imprimirTablero(tablero);
-	 
 	 movPlayer(tablero,f,&conf);
+	 imprimirTablero(tablero);
 	 if(conf==0)
 	 {
 	   basicMov(tablero,1);
+	   system("cls");
        imprimirTablero(tablero);
      }
   }
