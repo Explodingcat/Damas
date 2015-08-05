@@ -1,8 +1,5 @@
 # Damas
-Proyecto Damas
-
-Introducción
-
+Proyecto Damas (Chilenas)
 
 
 
