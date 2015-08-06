@@ -1913,6 +1913,7 @@ void sopladita(int t[][12], int peon, int comer, int pt[][12])
               cout<<"Una de tus Fichas a sido Robada por la sopladita!!"<<endl;
               cout<<"Presiona ENTER para continuar"<<endl;
 	          while ( getchar() != '\n');
+	          while (getchar() != '\n');
               
             }
            
@@ -1922,6 +1923,7 @@ void sopladita(int t[][12], int peon, int comer, int pt[][12])
               cout<<"Una de tus Fichas a sido Robada por la sopladita!!"<<endl;
               cout<<"Presiona ENTER para continuar......."<<endl;
               while ( getchar() != '\n');
+              while (getchar() != '\n');
     	   }
 		}
 		else
@@ -2042,6 +2044,7 @@ void sopladita(int t[][12], int peon, int comer, int pt[][12])
 					cout<<"Una de tus Fichas a sido Robada por la sopladita!!"<<endl;
 					cout<<"Presiona ENTER para continuar"<<endl;
 	                while ( getchar() != '\n');
+	                while (getchar() != '\n');
 				}
 			}
 		}
@@ -2077,6 +2080,7 @@ void sopladita(int t[][12], int peon, int comer, int pt[][12])
                            cout<<"Una de tus Fichas a sido Robada por la sopladita!"<<endl;
                            cout<<"Presiona ENTER para continuar"<<endl;
 	                       while ( getchar() != '\n');
+	                       while (getchar() != '\n');
                        }
            
 		               if(pt[k+2][j+2]==0 && ((pt[k+1][j+1]<=-16 && pt[k+1][j+1]>=-30) || (pt[k+1][j+1]>=16 && pt[k+1][j+1]<=30)))
@@ -2101,6 +2105,7 @@ void sopladita(int t[][12], int peon, int comer, int pt[][12])
                             cout<<"Una de tus Fichas a sido Robada por la sopladita!"<<endl;
                             cout<<"Presiona ENTER para continuar"<<endl;
 	                        while ( getchar() != '\n');
+	                        while (getchar() != '\n');
     	                }
     	           }
 			   }
@@ -2179,6 +2184,7 @@ int main()
             basicMov(tablero,1,&conti);
             cout<<"Presiona ENTER para continuar"<<endl;
 	        while ( getchar() != '\n');
+	        while (getchar() != '\n');
             system("clear");
             sensorDama(tablero);
             imprimirTablero(tablero);
@@ -2226,7 +2232,8 @@ int main()
 	     	           {
 	     		           doblePlayer(tablero,peon,&conf,comer);
 	     		           cout<<"Presiona ENTER para continuar"<<endl;
-	                       while ( getchar() != '\n');
+	                       while (getchar() != '\n');
+	                       while (getchar() != '\n');
 	     		           system("clear");
 	     		           imprimirTablero(tablero);
 	     	           }
