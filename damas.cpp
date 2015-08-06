@@ -1877,7 +1877,15 @@ void Menu()
 	cout<<endl;
 	cout<<endl;
 	cout<<"1.- Para poder mover tus piezas, debes ingresar las coordenadas fijadas a los costados del tablero en la cual esta posicionada la pieza que deseas mover, esto desplegara las opciones de movimiento validas para la pieza."<<endl;
-	cout<<"2.- Despues de mover en cada turno se te preguntara si deseas terminar o seguir tu turno, en el caso"<<endl;
+	cout<<"2.- Despues de mover en cada turno se te preguntara si deseas terminar o seguir tu turno, en el caso de que veas que puedes seguir jugando continua haciendolo hasta que no lo puedas hacer."<<endl;
+	cout<<"3.- Si por alguna razon dejas pasar una oportunidad de comer una pieza enemiga, tu contrincante te castigara robandote la pieza."<<endl;
+	cout<<"4.- En este juego las fichas blancas estan simbolizadas por la letra 'o' y las negras con 'x', si llegan a convertirse en dama alguna de las piezas, se transformaran en letras mayusculas respectivamente."<<endl;
+	cout<<"5.- En el caso de que tengas una dama y efectivamente en ese turno pueda comer, se le da prioridad a la dama sin importar que con un peon puedas comer mas piezas."<<endl;
+	cout<<"6.- Siempre las fichas 'o' comenzaran los juegos."<<endl;
+	cout<<"7.- En el caso de que a ambos jugadores solo les quede 1 piezas en el tablero, automaticamente se daran 3 turnos para conseguir un resultado, en el caso de que no lo haya se dara por empatada la partida."<<endl;
+	cout<<""<<endl;
+	cout<<"BUENO AHORA ES TIEMPO DE JUGAR!"<<endl;
+	cout<<""<<endl;
 	system("pause");
 	system("cls");
 	
